@@ -1,6 +1,7 @@
 var operacion;
 var cifra1;
 var cifra2;
+var iteracion = 0;
   function init(){
     var display = document.getElementById('display');
     var on = document.getElementById('on');
@@ -123,9 +124,21 @@ var cifra2;
         }
     }
 
+    punto.onclick=function(e){
+      var valor_inicial = new Number(display.textContent);
+      if (valor_inicial<1){
+        display.textContent= "0"
+      }
+        else {
+          display.textContent=display.textContent+'.';
+        }
+    }
+
     on.onclick=function(e){
       resetear();
+      display.textContent= "0";
     }
+
     sing.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
       display.textContent= valor_inicial* (-1);;
@@ -155,44 +168,50 @@ var cifra2;
       calcular();
     }
   }
-
   function limpiar(){
     display.textContent="";
   }
-
-  function teclear(tecla0){
-      function desteclear(tecla0){
-        var estado_inicial = document.getElementsByClassName('tecla');
-        document.getElementsByClassName('tecla')[tecla0].style.width= estado_inicial[tecla0].style.width;
-        document.getElementsByClassName('tecla')[tecla0].style.height= estado_inicial[tecla0].style.height;
-      }
-    var estado_inicial = document.getElementsByClassName('tecla');
-   document.getElementsByClassName('tecla')[tecla0].style.width= estado_inicial[tecla0].style.width+30;
-   document.getElementsByClassName('tecla')[tecla0].style.height= estado_inicial[tecla0].style.height+30;
-   desteclear(tecla0);
- }
-
-function resetear() {
-  display.textContent='';
-  cifra1 = 0;
-  cifra2 = 0;
-  operacion = '';
-}
+  function resetear() {
+    display.textContent='';
+    cifra1 = 0;
+    cifra2 = 0;
+    operacion = '';
+  }
 function calcular(){
-  var respuestado = 0;
+  var resultado = 0;
+    function validar(res) {
+      var cadena;
+      var valor;
+      var punto;
+        cadena=res.toString();
+        if (cadena.length<=8){
+          valor = res;
+        }
+        else{
+          valor = cadena.substring(0, 8);
+          punto = cadena.substring(7, 8);
+          if (punto!="."){
+            res = valor;
+          }
+          else{
+            valor = cadena.substring(0, 7);
+            res = valor;
+          }
+        }
+          display.textContent = res;
+    }
   switch (operacion) {
-    case "+": respuestado = parseFloat(cifra1) + parseFloat(cifra2);
+    case "+": resultado = parseFloat(cifra1) + parseFloat(cifra2);
     break;
 
-    case "-": respuestado = parseFloat(cifra1) - parseFloat(cifra2);
+    case "-": resultado = parseFloat(cifra1) - parseFloat(cifra2);
     break;
 
-    case "*": respuestado = parseFloat(cifra1) * parseFloat(cifra2);
+    case "*": resultado = parseFloat(cifra1) * parseFloat(cifra2);
     break;
 
-    case "/": respuestado = parseFloat(cifra1) / parseFloat(cifra2);
+    case "/": resultado = parseFloat(cifra1) / parseFloat(cifra2);
     break;
   }
-  resetear();
-  display.textContent = respuestado;
+    validar(resultado);
 }
