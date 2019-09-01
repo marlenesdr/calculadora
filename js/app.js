@@ -1,6 +1,7 @@
 var operacion;
 var cifra1;
 var cifra2;
+var resultado;
 var iteracion = 0;
   function init(){
     var display = document.getElementById('display');
@@ -26,94 +27,157 @@ var iteracion = 0;
 
     uno.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "1"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"1";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="1";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"1";
       }
         else {
           display.textContent=display.textContent+"1";
         }
     }
-
+    uno.onmousedown=function(e){
+      uno.width=50;
+      uno.height=50;
+    }
+    uno.onmouseup=function(e){
+      setTimeout(3000);
+      uno.width=77;
+      uno.height=63;
+    }
     dos.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "2"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"2";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="2";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"2";
       }
         else {
           display.textContent=display.textContent+"2";
         }
     }
-
     tres.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "3"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"3";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="3";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"3";
       }
         else {
           display.textContent=display.textContent+"3";
         }
     }
-
     cuatro.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "4"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"4";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="4";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"4";
       }
         else {
           display.textContent=display.textContent+"4";
         }
     }
-
     cinco.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "5"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"5";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="5";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"5";
       }
         else {
           display.textContent=display.textContent+"5";
         }
     }
-
     seis.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "6"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"6";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="6";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"6";
       }
         else {
           display.textContent=display.textContent+"6";
         }
     }
-
     siete.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "7"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"7";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="7";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"7";
       }
         else {
           display.textContent=display.textContent+"7";
         }
     }
-
     ocho.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "8"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"8";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="8";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"8";
       }
         else {
           display.textContent=display.textContent+"8";
         }
     }
-
     nueve.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
-      if (valor_inicial<1){
-        display.textContent= "9"
+      var punto_decimal = display.textContent[1];
+      if (punto_decimal=="."){
+        display.textContent= display.textContent+"9";
+      }
+      else if (valor_inicial=="0"){
+        display.textContent="9";
+      }
+      else if (valor_inicial<1){
+        display.textContent= display.textContent+"9";
       }
         else {
           display.textContent=display.textContent+"9";
         }
     }
-
     cero.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
       if (valor_inicial<1){
@@ -123,11 +187,10 @@ var iteracion = 0;
           display.textContent=display.textContent+'0';
         }
     }
-
     punto.onclick=function(e){
       var valor_inicial = new Number(display.textContent);
       if (valor_inicial<1){
-        display.textContent= "0"
+        display.textContent= "0"+'.';
       }
         else {
           display.textContent=display.textContent+'.';
@@ -144,24 +207,108 @@ var iteracion = 0;
       display.textContent= valor_inicial* (-1);;
     }
     sumar.onclick = function(e){
-      operacion="+";
-      cifra1=display.textContent;
-      limpiar();
+      if (typeof operacion === "undefined") {
+        operacion="+";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else if (operacion == ""){
+        operacion="+";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else
+      if (cifra1 != 'Nan'){
+          cifra2=display.textContent;
+          calcular();
+          cifra1=resultado;
+          operacion="+";
+          cifra2=0;
+          limpiar();
+        }
+        else{
+          operacion="+";
+          cifra1=display.textContent;
+          limpiar();
+        }
     }
     restar.onclick = function(e){
-      operacion="-";
-      cifra1=display.textContent;
-      limpiar();
+      if (typeof operacion === "undefined"){
+        operacion="-";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      if (operacion == ""){
+        operacion="-";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else
+      if (cifra1 != 'Nan'){
+          cifra2=display.textContent;
+          calcular();
+          cifra1=resultado;
+          operacion="-";
+          cifra2=0;
+          limpiar();
+        }
+        else{
+          operacion="-";
+          cifra1=display.textContent;
+          limpiar();
+        }
     }
     multiplicar.onclick = function(e){
-      operacion="*";
-      cifra1=display.textContent;
-      limpiar();
+      if (typeof operacion === "undefined") {
+        operacion="*";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else if (operacion == ""){
+        operacion="*";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else
+      if (cifra1 != 'Nan'){
+          cifra2=display.textContent;
+          calcular();
+          cifra1=resultado;
+          operacion="*";
+          cifra2=0;
+          limpiar();
+        }
+        else{
+          operacion="*";
+          cifra1=display.textContent;
+          limpiar();
+        }
     }
     dividir.onclick = function(e){
-      operacion="/";
-      cifra1=display.textContent;
-      limpiar();
+      if (typeof operacion === "undefined") {
+        operacion="/";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else if (operacion == ""){
+        operacion="/";
+        cifra1=display.textContent;
+        limpiar();
+      }
+      else
+      if (cifra1 != 'Nan'){
+          cifra2=display.textContent;
+          calcular();
+          cifra1=resultado;
+          operacion="/";
+          cifra2=0;
+          limpiar();
+        }
+        else{
+          operacion="/";
+          cifra1=display.textContent;
+          limpiar();
+        }
     }
     igual.onclick = function(e){
       cifra2=display.textContent;
@@ -178,24 +325,23 @@ var iteracion = 0;
     operacion = '';
   }
 function calcular(){
-  var resultado = 0;
     function validar(res) {
-      var cadena;
-      var valor;
-      var punto;
-        cadena=res.toString();
-        if (cadena.length<=8){
-          valor = res;
-        }
-        else{
-          valor = cadena.substring(0, 8);
-          punto = cadena.substring(7, 8);
-          if (punto!="."){
-            res = valor;
+        var cadena;
+        var valor;
+        var punto;
+          cadena=res.toString();
+          if (cadena.length<=8){
+            valor = res;
           }
           else{
-            valor = cadena.substring(0, 7);
-            res = valor;
+            valor = cadena.substring(0, 8);
+            punto = cadena.substring(7, 8);
+            if (punto!="."){
+              res = valor;
+          }
+          else{
+              valor = cadena.substring(0, 7);
+              res = valor;
           }
         }
           display.textContent = res;
@@ -203,13 +349,10 @@ function calcular(){
   switch (operacion) {
     case "+": resultado = parseFloat(cifra1) + parseFloat(cifra2);
     break;
-
     case "-": resultado = parseFloat(cifra1) - parseFloat(cifra2);
     break;
-
     case "*": resultado = parseFloat(cifra1) * parseFloat(cifra2);
     break;
-
     case "/": resultado = parseFloat(cifra1) / parseFloat(cifra2);
     break;
   }
